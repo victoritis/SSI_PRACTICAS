@@ -1,0 +1,38 @@
+·GPG -> Versión 2.* 
+·Debug GPG -> --debug-level 0-9 -> el 9 es el máximo detalle el 0 es sin detalle.
+    Recomendado para saber que falla y para entender que es lo que hace por debajo.
+
+·Windows -> http://www.gpg4win.org -> No usar interfaz gráfica, en el examen se preguntan comandos.
+
+·Buscar claves en un servidor a partir de un identificador de usuario: (Dice que este comando es problemático)
+    gpg [--keyserver servidor] --search-keys identificador
+        identificador -> identificador alfanumérico de la clave, su fingerprint, el nombre completo del usuario, su email, etc...
+        En algunas distros puede hacer falta el dirmgr.
+
+·Ver claves públicas:
+    gpg --list-keys
+
+·Ver claves privadas: 
+    gpg --list-secret-keys
+
+·Verificar un documento: 
+    gpg --verify firma documento_firmado -> Cuando la firma está en un archivo separada del archivo
+    gpg --verify documento+firma -> Cuando la firma contiene la propia firma en el archivo, aunque no es muy habitual 
+
+·Generación de claves:
+    gpg --gen-key
+    gpg --full-generate-key -> Usar este porque permite seleccionar parámetro comom tamaño d eclave etc..
+
+·Exportar clave pública:
+    gpg --armor --export identificador -> Exporta  a ASCII por pantalla
+    gpg --output fichero.asc --armor --export identificador 
+    gpg --output fichero.gpg --export identificador -> La exporta a u fichero binario, no recomendado
+
+El parámetro armor (ASCII armor) hace que la salida del comnando sea en ASCII, si no en la mayoría de los casos es en binario, que no sirve para hacer copy-paste
+
+·Exportar clave privada:
+    gpg --armor --export-secret-keys identificador -> En realidad exporta las dos claves, tanto la privada como la pública
+
+·Importar claves:
+    gpg --import archivo_clave -> Importa las claves que se encuentra en el archivo, tanto públicas como privadas
+
